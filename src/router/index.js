@@ -12,6 +12,7 @@ import NProgress from 'nprogress'
 import GStore from '@/store'
 import EventService from '@/services/EventService'
 import OrganizerService from '@/services/OrganizerService.js'
+import Login from '@/views/LoginFormView.vue'
 const routes = [
   {
     path: '/',
@@ -80,6 +81,11 @@ const routes = [
           console.log('cannot load organizer')
         })
     }
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
   },
   {
     path: '/404/:resource',
