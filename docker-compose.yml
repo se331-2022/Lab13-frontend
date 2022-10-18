@@ -1,0 +1,6 @@
+version: '3.9'
+services:
+      web:
+      image: "suraditluo/se331-lab06"
+      ports:
+        -8001:80
