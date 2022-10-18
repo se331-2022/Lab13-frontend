@@ -7,7 +7,7 @@
       <ul v-if="!GStore.currentUser" class="navbar-nav ml-auto">
         <li class="nav-item">
           <router-link to="/register" class="nav-link">
-            <font-awesome-icon icon="user-plus" /> Sign up
+            <font-awesome-icon icon="user-plus" /> Sign Up
           </router-link>
         </li>
         <li class="nav-item">
@@ -30,20 +30,26 @@
         </li>
       </ul>
     </nav>
-    <router-link :to="{ name: 'EventList' }">Home</router-link> |
-    <router-link :to="{ name: 'about' }">About</router-link> |
-    <router-link :to="{ name: 'AddEvent' }"> New Event</router-link>
   </div>
+  <nav>
+    <router-link :to="{ name: 'EventList' }">Home</router-link> |
+    <router-link :to="{ name: 'about' }">About</router-link>
+    <span v-if="isAdmin">
+      |<router-link :to="{ name: 'AddEvent' }"> New Event</router-link>
+    </span>
+  </nav>
   <router-view />
 </template>
 <script>
-import AuthService from './services/AuthService'
-
+import AuthService from '@/services/AuthService.js'
 export default {
   inject: ['GStore'],
   computed: {
     currentUser() {
       return localStorage.getItem('user')
+    },
+    isAdmin() {
+      return AuthService.hasRoles('ROLE_ADMIN')
     }
   },
   methods: {
@@ -64,7 +70,6 @@ export default {
     background: transparent;
   }
 }
-
 #flashMessage {
   animation-name: yellowfade;
   animation-duration: 3s;
@@ -76,16 +81,13 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
-
 nav {
   padding: 30px;
 }
-
 nav a {
   font-weight: bold;
   color: #2c3e50;
 }
-
 nav a.router-link-exact-active {
   color: #42b983;
 }
@@ -117,7 +119,6 @@ small {
 .-shadow {
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.13);
 }
-
 button,
 label,
 input,
