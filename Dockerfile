@@ -3,7 +3,7 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
-ENV NODE_ENV production
+ENV VUE_APP_BACKEND_URL http://3.208.167.33:8999
 RUN npm run build
 
 FROM nginx:stable-alpine as production-stage
