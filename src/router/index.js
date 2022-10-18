@@ -13,6 +13,7 @@ import GStore from '@/store'
 import EventService from '@/services/EventService'
 import OrganizerService from '@/services/OrganizerService.js'
 import Login from '@/views/LoginFormView.vue'
+import Register from '@/views/RegisterFormView.vue'
 const routes = [
   {
     path: '/',
@@ -86,6 +87,11 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: Register
   },
   {
     path: '/404/:resource',
